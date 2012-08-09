@@ -75,7 +75,7 @@ static NSString *sub(NSString *pattern, NSString *template, NSString *string)
 
     NSString *newURLString = nil;
     if (URL.isAmazon) {
-        NSString *template = [NSString stringWithFormat:@"http://%@/gp/product/$1/%@", URL.host, self.trackingParam];
+        NSString *template = [NSString stringWithFormat:@"http://%@/dp/$1/%@", URL.host, self.trackingParam];
         newURLString = (sub(@"^.+&creativeASIN=(\\w+)&.+$", template, URLString) ?:
                         sub(@"^https?://[^/]+/gp/product/(\\w+)/.+$", template, URLString) ?:
                         sub(@"^https?://[^/]+/[^/]+/dp/(\\w+)/.+$", template, URLString) ?:
