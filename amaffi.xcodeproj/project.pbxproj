@@ -190,6 +190,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "amaffi/amaffi-Prefix.pch";
+				INSTALL_PATH = /bin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -199,6 +200,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "amaffi/amaffi-Prefix.pch";
+				INSTALL_PATH = /bin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
