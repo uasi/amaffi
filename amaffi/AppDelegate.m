@@ -56,6 +56,9 @@
         [pboard setString:newURLString forType:@"public.url"];
         [pboard setString:newURLString forType:NSPasteboardTypeString];
     }
+    else {
+        NSLog(@"Unmatched URL: <%@>", URLString);
+    }
     return [pboard changeCount];
 }
 
@@ -70,6 +73,10 @@ static NSString *sub(NSString *pattern, NSString *template, NSString *string)
 
 - (NSString *)rewriteURLString:(NSString *)URLString
 {
+    // http://www.amazon.com/(PRODUCTNAME)/dp/(ASIN)/ may contain non-ASCII chars
+    // in (PRODUCTNAME) part, which +URLWithString: doesn't accept.
+    // So we first replace them with pretty harmless chars.
+    URLString = sub(@"^(https?://[^/]+/)(?:[^/]+)(/dp/\\w+/.+$)", @"$1(PRODUCTNAME)$2", URLString);
     NSURL *URL = [NSURL URLWithString:URLString];
     if (!URL) return URLString;
 
