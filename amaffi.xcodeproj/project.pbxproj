@@ -8,23 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5801F60E15D36B07000E8F6A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5801F60D15D36B07000E8F6A /* main.m */; };
-		5801F61215D36B07000E8F6A /* amaffi.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5801F61115D36B07000E8F6A /* amaffi.1 */; };
 		5801F61915D36B1F000E8F6A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5801F61815D36B1F000E8F6A /* Cocoa.framework */; };
 		5801F61C15D36B38000E8F6A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5801F61B15D36B38000E8F6A /* AppDelegate.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		5801F60415D36B07000E8F6A /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-				5801F61215D36B07000E8F6A /* amaffi.1 in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		5801F60615D36B07000E8F6A /* amaffi */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = amaffi; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,7 +88,6 @@
 			buildPhases = (
 				5801F60215D36B07000E8F6A /* Sources */,
 				5801F60315D36B07000E8F6A /* Frameworks */,
-				5801F60415D36B07000E8F6A /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -237,6 +222,7 @@
 				5801F61715D36B07000E8F6A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
