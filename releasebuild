@@ -1,0 +1,3 @@
+#!/bin/sh
+
+xcodebuild DSTROOT="$PWD" install
