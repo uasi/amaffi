@@ -78,7 +78,7 @@ static NSString *sub(NSString *pattern, NSString *template, NSString *string)
         NSString *template = [NSString stringWithFormat:@"http://%@/dp/$1/%@", URL.host, self.trackingParam];
         newURLString = (sub(@"^.+&creativeASIN=(\\w+)&.+$", template, URLString) ?:
                         sub(@"^https?://[^/]+/gp/product/(\\w+)/.+$", template, URLString) ?:
-                        sub(@"^https?://[^/]+/[^/]+/dp/(\\w+)/.+$", template, URLString) ?:
+                        sub(@"^https?://[^/]+/(?:[^/]+/)dp/(\\w+)/.+$", template, URLString) ?:
                         sub(@"^https?://[^/]+/o/ASIN/(\\w+)/.+$", template, URLString) ?:
                         sub(@"-https?://[^/]+/exec/obidos/ASIN/(\\w+)/.+$", template, URLString));
     }
