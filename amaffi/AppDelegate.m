@@ -76,9 +76,10 @@ static NSString *sub(NSString *pattern, NSString *template, NSString *string)
     // http://www.amazon.com/(PRODUCTNAME)/dp/(ASIN)/ may contain non-ASCII chars
     // in (PRODUCTNAME) part, which +URLWithString: doesn't accept.
     // So we first replace them with pretty harmless chars.
+    NSString *origURLString = URLString;
     URLString = sub(@"^(https?://[^/]+/)(?:[^/]+)(/dp/\\w+/.+$)", @"$1(PRODUCTNAME)$2", URLString);
     NSURL *URL = [NSURL URLWithString:URLString];
-    if (!URL) return URLString;
+    if (!URL) return origURLString;
 
     NSString *newURLString = nil;
     if (URL.isAmazon) {
@@ -89,7 +90,7 @@ static NSString *sub(NSString *pattern, NSString *template, NSString *string)
                         sub(@"^https?://[^/]+/o/ASIN/(\\w+)/.+$", template, URLString) ?:
                         sub(@"-https?://[^/]+/exec/obidos/ASIN/(\\w+)/.+$", template, URLString));
     }
-    return newURLString ?: URLString;
+    return newURLString ?: origURLString;
 }
 
 - (NSString *)trackingParam {
