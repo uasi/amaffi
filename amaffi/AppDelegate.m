@@ -45,19 +45,19 @@
 
 - (NSInteger)modifyPasteboard:(NSPasteboard *)pboard
 {
-    NSString *URLString = ([pboard stringForType:@"public.url"] ?:
-                           [pboard stringForType:NSPasteboardTypeString]);
-    if (!URLString) return [pboard changeCount];
+    NSString *content = ([pboard stringForType:@"public.url"] ?:
+                         [pboard stringForType:NSPasteboardTypeString]);
+    if (!content) return [pboard changeCount];
 
-    NSString *newURLString = [self rewriteURLString:URLString];
-    if (![newURLString isEqual:URLString]) {
-        NSLog(@"Rewrite URL: <%@> to <%@>", URLString, newURLString);
-        [pboard clearContents];
-        [pboard setString:newURLString forType:@"public.url"];
-        [pboard setString:newURLString forType:NSPasteboardTypeString];
+    NSString *newContent = [self rewriteAmazonURLString:content];
+    if ([newContent isEqual:content]) {
+        NSLog(@"Pboard content: %@", content);
     }
     else {
-        NSLog(@"Unmatched URL: <%@>", URLString);
+        NSLog(@"Rewrite URL: <%@> to <%@>", content, newContent);
+        [pboard clearContents];
+        [pboard setString:newContent forType:@"public.url"];
+        [pboard setString:newContent forType:NSPasteboardTypeString];
     }
     return [pboard changeCount];
 }
@@ -71,7 +71,7 @@ static NSString *sub(NSString *pattern, NSString *template, NSString *string)
     return [re stringByReplacingMatchesInString:string options:0 range:NSMakeRange(0, [string length]) withTemplate:template];
 }
 
-- (NSString *)rewriteURLString:(NSString *)URLString
+- (NSString *)rewriteAmazonURLString:(NSString *)URLString
 {
     // http://www.amazon.com/(PRODUCTNAME)/dp/(ASIN)/ may contain non-ASCII chars
     // in (PRODUCTNAME) part, which +URLWithString: doesn't accept.
