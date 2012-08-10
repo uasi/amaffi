@@ -77,7 +77,8 @@ static NSString *sub(NSString *pattern, NSString *template, NSString *string)
     // in (PRODUCTNAME) part, which +URLWithString: doesn't accept.
     // So we first replace them with pretty harmless chars.
     NSString *origURLString = URLString;
-    URLString = sub(@"^(https?://[^/]+/)(?:[^/]+)(/dp/\\w+/.+$)", @"$1(PRODUCTNAME)$2", URLString);
+    URLString = (sub(@"^(https?://[^/]+/)(?:[^/]+)(/dp/\\w+/.+$)", @"$1(PRODUCTNAME)$2", URLString) ?:
+                 origURLString);
     NSURL *URL = [NSURL URLWithString:URLString];
     if (!URL) return origURLString;
 
