@@ -51,7 +51,7 @@
 
     NSString *newContent = [self rewriteAmazonURLString:content];
     if ([newContent isEqual:content]) {
-        NSLog(@"Pboard content: %@", content);
+        NSLog(@"Pboard content: %@", content.length < 128 ? content : @"<...>");
     }
     else {
         NSLog(@"Rewrite URL: <%@> to <%@>", content, newContent);
