@@ -77,7 +77,7 @@ static NSString *sub(NSString *pattern, NSString *template, NSString *string)
     // in (PRODUCTNAME) part, which +URLWithString: doesn't accept.
     // So we first replace them with pretty harmless chars.
     NSString *origURLString = URLString;
-    URLString = (sub(@"^(https?://[^/]+/)(?:[^/]+)(/dp/\\w+/.+$)", @"$1(PRODUCTNAME)$2", URLString) ?:
+    URLString = (sub(@"^(https?://[^/]+/)(?:[^/]+)(/dp/\\w+/.*$)", @"$1(PRODUCTNAME)$2", URLString) ?:
                  origURLString);
     NSURL *URL = [NSURL URLWithString:URLString];
     if (!URL) return origURLString;
@@ -85,11 +85,11 @@ static NSString *sub(NSString *pattern, NSString *template, NSString *string)
     NSString *newURLString = nil;
     if (URL.isAmazon) {
         NSString *template = [NSString stringWithFormat:@"http://%@/dp/$1/%@", URL.host, self.trackingParam];
-        newURLString = (sub(@"^.+&creativeASIN=(\\w+)&.+$", template, URLString) ?:
-                        sub(@"^https?://[^/]+/gp/product/(\\w+)/.+$", template, URLString) ?:
-                        sub(@"^https?://[^/]+/(?:[^/]+/)dp/(\\w+)/.+$", template, URLString) ?:
-                        sub(@"^https?://[^/]+/o/ASIN/(\\w+)/.+$", template, URLString) ?:
-                        sub(@"-https?://[^/]+/exec/obidos/ASIN/(\\w+)/.+$", template, URLString));
+        newURLString = (sub(@"^.+&creativeASIN=(\\w+)&.*$", template, URLString) ?:
+                        sub(@"^https?://[^/]+/gp/product/(\\w+)/.*$", template, URLString) ?:
+                        sub(@"^https?://[^/]+/(?:[^/]+/)?dp/(\\w+)/.*$", template, URLString) ?:
+                        sub(@"^https?://[^/]+/o/ASIN/(\\w+)/.*$", template, URLString) ?:
+                        sub(@"-https?://[^/]+/exec/obidos/ASIN/(\\w+)/.*$", template, URLString));
     }
     return newURLString ?: origURLString;
 }
