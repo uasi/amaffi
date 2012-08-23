@@ -222,7 +222,7 @@ static NSString *sub(NSString *pattern, NSString *template, NSString *string)
 
 - (BOOL)hasDomain:(NSString *)domain
 {
-    return ([self.host isEqual:domain] ||
+    return ([self.host isEqualToString:domain] ||
             [self.host hasSuffix:[@"." stringByAppendingString:domain]]);
 }
 
