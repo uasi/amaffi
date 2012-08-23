@@ -33,9 +33,6 @@
         if (trackingIDCstr) {
             self.trackingID = [NSString stringWithUTF8String:trackingIDCstr];
         }
-        else {
-            fprintf(stderr, "Warning: Tracking ID is not given and AMAZON_TRACKING_ID is not set\n");
-        }
     }
     self.changeCount = [[NSPasteboard generalPasteboard] changeCount];
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(observePasteboard:) userInfo:nil repeats:YES];
