@@ -95,7 +95,7 @@ static NSString *sub(NSString *pattern, NSString *template, NSString *string)
                         sub(@"^https?://[^/]+/gp/product/(\\w+)/.*$", template, URLString) ?:
                         sub(@"^https?://[^/]+/(?:[^/]+/)?dp/(\\w+)/.*$", template, URLString) ?:
                         sub(@"^https?://[^/]+/o/ASIN/(\\w+)/.*$", template, URLString) ?:
-                        sub(@"-https?://[^/]+/exec/obidos/ASIN/(\\w+)/.*$", template, URLString));
+                        sub(@"^https?://[^/]+/exec/obidos/ASIN/(\\w+)/.*$", template, URLString));
     }
     return newURLString ?: origURLString;
 }
