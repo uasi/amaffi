@@ -24,12 +24,18 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
-    char *trackingIDCstr = getenv("AMAZON_TRACKING_ID");
-    if (trackingIDCstr) {
-        self.trackingID = [NSString stringWithUTF8String:trackingIDCstr];
+    NSArray *args = [[NSProcessInfo processInfo] arguments];
+    if ([args count] >= 2) {
+        self.trackingID = args[1];
     }
     else {
-        fprintf(stderr, "Warning: AMAZON_TRACKING_ID is not set\n");
+        char *trackingIDCstr = getenv("AMAZON_TRACKING_ID");
+        if (trackingIDCstr) {
+            self.trackingID = [NSString stringWithUTF8String:trackingIDCstr];
+        }
+        else {
+            fprintf(stderr, "Warning: Tracking ID is not given and AMAZON_TRACKING_ID is not set\n");
+        }
     }
     self.changeCount = [[NSPasteboard generalPasteboard] changeCount];
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(observePasteboard:) userInfo:nil repeats:YES];
