@@ -11,6 +11,6 @@ try `amaffi --install <id> && amaffi --load`.
 
 Run `amaffi --help` for further help.
 
-## Download binary
+## Download as zip
 
-https://raw.github.com/uasi/amaffi/master/bin/amaffi
+https://github.com/uasi/amaffi/archive/master.zip
